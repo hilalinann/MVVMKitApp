@@ -37,7 +37,10 @@ class EmployeeViewController: UIViewController, UITableViewDelegate {
                 }
             }, receiveValue: { [weak self] response in
                 guard let weakSelf = self else { return }
+                weakSelf.employeeViewModel.empData = response
+
                 weakSelf.updateDataSource()
+                //weakSelf.updateDataSource()
             }).store(in: &employeeListSubscriber)
 
     }
@@ -45,11 +48,8 @@ class EmployeeViewController: UIViewController, UITableViewDelegate {
         func updateDataSource() {
             
             self.dataSource = EmployeeTableViewDataSource(cellIdentifier: "EmployeeTableViewCell", items: self.employeeViewModel.empData.data!, configureCell: { (cell,emd) in
-                
-                guard let employeeCell = cell as? EmployeeTableViewCell else {return}
-                // BURAYA TEKRAR BAK ORJNİNALİNDE NEDEN HATASIZ ÇALIŞTI DA SEN DE ÇALIŞMIYOR??
-                employeeCell.employeesIdLabel.text = String(emd.id)
-                employeeCell.employeesNameLabel.text = String(emd.employee_name)
+                cell.employeesIdLabel.text = String(emd.id)
+                cell.employessNameLabel.text = String(emd.employee_name)
             })
             
             DispatchQueue.main.async {

@@ -13,12 +13,12 @@ class EmployeeTableViewCell : UITableViewCell {
     
     @IBOutlet weak var employeesIdLabel: UILabel!
     
-    @IBOutlet weak var employeesNameLabel: UILabel!
+    @IBOutlet weak var employessNameLabel: UILabel!
     
     var employee : EmployeeData? {
         didSet {
             employeesIdLabel.text = String.init(format: "%d", employee?.id ?? 0)
-            employeesNameLabel.text = employee?.employee_name
+            employessNameLabel.text = employee?.employee_name
         }
     }
     

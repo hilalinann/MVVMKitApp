@@ -13,7 +13,7 @@ class EmployeeListViewModel : NSObject {
     
     var router : EmployeeListRouter!
     private var apiService : APIService!
-    private(set) var empData : Employees!
+    var empData : Employees!
     
     lazy var employeeListResponse = PassthroughSubject<Employees, Error>()
     
