@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+class EmployeeDetailViewModel : NSObject {
+    
+    var router : EmployeeDetailRouter!
+    var empData : EmployeeData?
+}

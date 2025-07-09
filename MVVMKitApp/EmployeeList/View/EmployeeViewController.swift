@@ -6,24 +6,63 @@
 //
 
 import UIKit
+import Combine
 
-class EmployeeViewController: UIViewController {
+class EmployeeViewController: UIViewController, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var employeeViewModel = EmployeeListViewModel()
+    
+    lazy var employeeListSubscriber = Set<AnyCancellable>()
+    
+    private var dataSource : EmployeeTableViewDataSource<EmployeeTableViewCell, EmployeeData>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.tableView.delegate = self
+        callToViewModelForUpdate()
     }
     
+    func callToViewModelForUpdate() {
+        self.employeeViewModel
+            .employeeListResponse
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }, receiveValue: { [weak self] response in
+                guard let weakSelf = self else { return }
+                weakSelf.updateDataSource()
+            }).store(in: &employeeListSubscriber)
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
+        func updateDataSource() {
+            
+            self.dataSource = EmployeeTableViewDataSource(cellIdentifier: "EmployeeTableViewCell", items: self.employeeViewModel.empData.data!, configureCell: { (cell,emd) in
+                
+                guard let employeeCell = cell as? EmployeeTableViewCell else {return}
+                // BURAYA TEKRAR BAK ORJNİNALİNDE NEDEN HATASIZ ÇALIŞTI DA SEN DE ÇALIŞMIYOR??
+                employeeCell.employeesIdLabel.text = String(emd.id)
+                employeeCell.employeesNameLabel.text = String(emd.employee_name)
+            })
+            
+            DispatchQueue.main.async {
+                self.tableView.dataSource = self.dataSource
+                self.tableView.reloadData()
+            }
+        }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            employeeViewModel.navigateToEmployeeDetailScreen(index: indexPath.row)
+        }
+        
+    }
 
-}
+
+

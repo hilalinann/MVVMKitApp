@@ -6,3 +6,27 @@
 //
 
 import Foundation
+import UIKit
+
+class EmployeeTableViewCell : UITableViewCell {
+    
+    
+    @IBOutlet weak var employeesIdLabel: UILabel!
+    
+    @IBOutlet weak var employeesNameLabel: UILabel!
+    
+    var employee : EmployeeData? {
+        didSet {
+            employeesIdLabel.text = String.init(format: "%d", employee?.id ?? 0)
+            employeesNameLabel.text = employee?.employee_name
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+}
