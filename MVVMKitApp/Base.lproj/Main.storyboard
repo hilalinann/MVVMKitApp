@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Employee Detail View Controller-->
+        <!--EmployeeDetailViewController-->
         <scene sceneID="vXj-eI-swo">
             <objects>
-                <viewController id="iJz-P0-fau" customClass="EmployeeDetailViewController" customModule="MVVMKitApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="EmployeeDetailViewController" id="iJz-P0-fau" customClass="EmployeeDetailViewController" customModule="MVVMKitApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JZf-RM-Qx2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
