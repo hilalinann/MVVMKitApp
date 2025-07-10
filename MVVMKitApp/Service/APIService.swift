@@ -40,7 +40,8 @@ class APIService : NSObject {
         
         do {
             let jsonString = try? String(contentsOfFile: pathString, encoding: .utf8)
-            print("JSON string: \(jsonString)")
+            print("JSON string: \(jsonString ?? "nil")")
+
             
             guard let jsonData = jsonString?.data(using: .utf8) else {
                 completion(.failure(.dataConversionFailed))
