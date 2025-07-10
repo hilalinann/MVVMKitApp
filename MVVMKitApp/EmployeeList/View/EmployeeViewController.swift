@@ -46,6 +46,7 @@ class EmployeeViewController: UIViewController, UITableViewDelegate {
     }
     
         func updateDataSource() {
+            print("updateDataSource() fonksiyonu çağrıldı ")
             
             self.dataSource = EmployeeTableViewDataSource(cellIdentifier: "EmployeeTableViewCell", items: self.employeeViewModel.empData.data!, configureCell: { (cell,emd) in
                 cell.employeesIdLabel.text = String(emd.id)

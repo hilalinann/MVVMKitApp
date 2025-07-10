@@ -89,29 +89,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOn-j5-obL">
-                                                    <rect key="frame" x="46" y="21" width="327" height="33"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="33" id="7BF-4e-Q8J"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="22" y="15.999999999999998" width="353" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mg7-oi-XHu">
-                                                    <rect key="frame" x="46" y="73" width="327" height="39"/>
+                                                    <rect key="frame" x="22" y="39.333333333333336" width="353" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="fOn-j5-obL" firstAttribute="leading" secondItem="pwt-4Z-9ac" secondAttribute="leadingMargin" constant="26" id="9HK-Q6-yry"/>
-                                                <constraint firstItem="mg7-oi-XHu" firstAttribute="top" secondItem="fOn-j5-obL" secondAttribute="bottom" constant="19" id="TAm-Xa-Rfs"/>
-                                                <constraint firstItem="fOn-j5-obL" firstAttribute="trailing" secondItem="mg7-oi-XHu" secondAttribute="trailing" id="Tw6-yX-jfB"/>
-                                                <constraint firstItem="fOn-j5-obL" firstAttribute="trailing" secondItem="pwt-4Z-9ac" secondAttribute="trailingMargin" id="cR3-dX-hks"/>
-                                                <constraint firstItem="fOn-j5-obL" firstAttribute="leading" secondItem="mg7-oi-XHu" secondAttribute="leading" id="ejG-nt-fs8"/>
-                                                <constraint firstItem="fOn-j5-obL" firstAttribute="top" secondItem="pwt-4Z-9ac" secondAttribute="topMargin" constant="10" id="hd5-7i-Cuw"/>
-                                                <constraint firstItem="mg7-oi-XHu" firstAttribute="bottom" secondItem="pwt-4Z-9ac" secondAttribute="bottomMargin" id="trC-2Y-6k9"/>
+                                                <constraint firstItem="mg7-oi-XHu" firstAttribute="leading" secondItem="pwt-4Z-9ac" secondAttribute="leadingMargin" constant="2" id="Szg-cb-kON"/>
+                                                <constraint firstItem="mg7-oi-XHu" firstAttribute="trailing" secondItem="pwt-4Z-9ac" secondAttribute="trailingMargin" constant="2" id="UP2-vA-6S5"/>
+                                                <constraint firstItem="fOn-j5-obL" firstAttribute="top" secondItem="pwt-4Z-9ac" secondAttribute="topMargin" constant="5" id="bJk-AI-HAu"/>
+                                                <constraint firstItem="mg7-oi-XHu" firstAttribute="top" secondItem="fOn-j5-obL" secondAttribute="bottom" constant="3" id="gSf-Y6-Ucv"/>
+                                                <constraint firstItem="fOn-j5-obL" firstAttribute="leading" secondItem="pwt-4Z-9ac" secondAttribute="leadingMargin" constant="2" id="iIb-4b-TgZ"/>
+                                                <constraint firstItem="fOn-j5-obL" firstAttribute="trailing" secondItem="pwt-4Z-9ac" secondAttribute="trailingMargin" constant="2" id="ycZ-ZR-wgz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -125,10 +121,10 @@
                         <viewLayoutGuide key="safeArea" id="IWE-Qi-9qy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="an2-ha-xxb" firstAttribute="leading" secondItem="IWE-Qi-9qy" secondAttribute="leading" id="BXL-mp-yjn"/>
-                            <constraint firstItem="IWE-Qi-9qy" firstAttribute="trailing" secondItem="an2-ha-xxb" secondAttribute="trailing" id="K82-DM-zyK"/>
-                            <constraint firstItem="an2-ha-xxb" firstAttribute="top" secondItem="IWE-Qi-9qy" secondAttribute="top" id="fq8-Sj-ieA"/>
-                            <constraint firstItem="IWE-Qi-9qy" firstAttribute="bottom" secondItem="an2-ha-xxb" secondAttribute="bottom" id="vsr-S9-Oa1"/>
+                            <constraint firstItem="an2-ha-xxb" firstAttribute="top" secondItem="IWE-Qi-9qy" secondAttribute="top" id="IeJ-Tb-5vk"/>
+                            <constraint firstItem="an2-ha-xxb" firstAttribute="trailing" secondItem="IWE-Qi-9qy" secondAttribute="trailing" id="KRo-EC-39D"/>
+                            <constraint firstItem="an2-ha-xxb" firstAttribute="leading" secondItem="IWE-Qi-9qy" secondAttribute="leading" id="cHQ-IG-U5b"/>
+                            <constraint firstItem="an2-ha-xxb" firstAttribute="bottom" secondItem="IWE-Qi-9qy" secondAttribute="bottom" id="pub-m9-bii"/>
                         </constraints>
                     </view>
                     <connections>
