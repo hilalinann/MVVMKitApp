@@ -14,8 +14,14 @@ class EmployeeListModule {
     func createModule() -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let empVC = storyboard.instantiateViewController(withIdentifier: "EmployeeViewController") as! EmployeeViewController
-        empVC.employeeViewModel.router = EmployeeListRouter()
-        empVC.employeeViewModel.router?.viewController = empVC
+        
+        let viewModel = EmployeeListViewModel()
+        viewModel.router = EmployeeListRouter()
+        viewModel.router?.viewController = empVC
+            
+        empVC.employeeViewModel = viewModel
+        //empVC.employeeViewModel.router = EmployeeListRouter()
+        //empVC.employeeViewModel.router?.viewController = empVC
         return empVC
     }
     

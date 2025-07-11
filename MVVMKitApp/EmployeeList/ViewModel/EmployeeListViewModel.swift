@@ -15,8 +15,9 @@ class EmployeeListViewModel : NSObject {
     private var apiService : APIService!
     var empData : Employees!
     
-    lazy var employeeListResponse = PassthroughSubject<Employees, Error>()
-    
+    //lazy var employeeListResponse = PassthroughSubject<Employees, Error>()
+    var employeeListResponse = CurrentValueSubject<Employees?, Never>(nil)
+
     override init() {
         super.init()
         self.apiService = APIService()
@@ -24,18 +25,17 @@ class EmployeeListViewModel : NSObject {
     }
     
     func callFuncToGetEmpData() {
-        self.apiService
-            .apiToGetEmployeeMockData{ result in
-                switch result {
-                case .success(let employees):
-                    print("Çekilen veri: \(employees)")
-                    self.empData = employees
-                    self.employeeListResponse.send(employees)
-                case .failure(let error):
-                    print("Veri yükleme hatası: \(error)")
-                    self.employeeListResponse.send(completion: .failure(error))
-                }
+        self.apiService.apiToGetEmployeeMockData { result in
+            switch result {
+            case .success(let employees):
+                print("Çekilen veri: \(employees)")
+                self.empData = employees
+                self.employeeListResponse.send(employees)
+            case .failure(let error):
+                print("Veri yükleme hatası: \(error.localizedDescription)")
+                // Artık .send(completion:) yok çünkü .failure tanımlı değil
             }
+        }
     }
     
     func navigateToEmployeeDetailScreen(index: Int) {

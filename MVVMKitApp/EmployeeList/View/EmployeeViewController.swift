@@ -12,7 +12,7 @@ class EmployeeViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var employeeViewModel = EmployeeListViewModel()
+    var employeeViewModel: EmployeeListViewModel!
     
     lazy var employeeListSubscriber = Set<AnyCancellable>()
     
@@ -27,23 +27,38 @@ class EmployeeViewController: UIViewController, UITableViewDelegate {
     func callToViewModelForUpdate() {
         self.employeeViewModel
             .employeeListResponse
+            .compactMap { $0 } // nil olan ilk değerleri filtrele
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
-                }
-            }, receiveValue: { [weak self] response in
+            .sink(receiveValue: { [weak self] response in
                 guard let weakSelf = self else { return }
                 weakSelf.employeeViewModel.empData = response
-
                 weakSelf.updateDataSource()
-                //weakSelf.updateDataSource()
-            }).store(in: &employeeListSubscriber)
-
+            })
+            .store(in: &employeeListSubscriber)
     }
+    
+    /*
+    func callToViewModelForUpdate() {
+            self.employeeViewModel
+                .employeeListResponse
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        print("Error: \(error.localizedDescription)")
+                    }
+                }, receiveValue: { [weak self] response in
+                    guard let weakSelf = self else { return }
+                    weakSelf.employeeViewModel.empData = response
+
+                    weakSelf.updateDataSource()
+                    //weakSelf.updateDataSource()
+                }).store(in: &employeeListSubscriber)
+
+        }
+     */
     
         func updateDataSource() {
             print("updateDataSource() fonksiyonu çağrıldı ")
