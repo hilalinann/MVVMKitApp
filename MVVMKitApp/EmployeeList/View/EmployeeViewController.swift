@@ -12,9 +12,12 @@ class EmployeeViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var employeeViewModel: EmployeeListViewModel!
+    var employeeViewModel = EmployeeListViewModel()
+    var employeeListSubscriber = Set<AnyCancellable>()
     
-    lazy var employeeListSubscriber = Set<AnyCancellable>()
+    //var employeeViewModel: EmployeeListViewModel!
+    
+   // lazy var employeeListSubscriber = Set<AnyCancellable>()
     
     private var dataSource : EmployeeTableViewDataSource<EmployeeTableViewCell, EmployeeData>!
     
@@ -27,14 +30,22 @@ class EmployeeViewController: UIViewController, UITableViewDelegate {
     func callToViewModelForUpdate() {
         self.employeeViewModel
             .employeeListResponse
-            .compactMap { $0 } 
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] response in
-                guard let weakSelf = self else { return }
-                weakSelf.employeeViewModel.empData = response
-                weakSelf.updateDataSource()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Veri çekme hatası: \(error.localizedDescription)")
+                }
+            }, receiveValue: { [weak self] response in
+                guard let self = self else { return }
+                self.employeeViewModel.empData = response
+                self.updateDataSource()
             })
             .store(in: &employeeListSubscriber)
+
+        self.employeeViewModel.getEmployeeList()
     }
     
     /*
