@@ -23,6 +23,13 @@ class EmployeeDetailViewController : UIViewController {
     }
     
     func setupEmployeeData() {
+        
+        if let employeeName = employeeDetailViewModel.empData?.employee_name {
+            navigationItem.title = "\(employeeName) Detayları"
+        } else {
+            navigationItem.title = "Çalışan Detayı" 
+        }
+        
         if let empID = employeeDetailViewModel.empData?.id {
             employeeIdLabel.text = String.init(format: "Employee ID: %d", empID)
         }
