@@ -27,7 +27,7 @@ class EmployeeViewController: UIViewController, UITableViewDelegate {
     func callToViewModelForUpdate() {
         self.employeeViewModel
             .employeeListResponse
-            .compactMap { $0 } // nil olan ilk değerleri filtrele
+            .compactMap { $0 } 
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] response in
                 guard let weakSelf = self else { return }

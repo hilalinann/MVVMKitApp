@@ -33,7 +33,6 @@ class EmployeeListViewModel : NSObject {
                 self.employeeListResponse.send(employees)
             case .failure(let error):
                 print("Veri yükleme hatası: \(error.localizedDescription)")
-                // Artık .send(completion:) yok çünkü .failure tanımlı değil
             }
         }
     }
