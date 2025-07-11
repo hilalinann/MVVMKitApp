@@ -31,7 +31,7 @@ class EmployeeDetailViewController : UIViewController {
             employeeAgeLabel.text = String.init(format: "Employee Age: %d", empAge)
         }
         if let empSalary = employeeDetailViewModel.empData?.employee_salary {
-            employeeAgeLabel.text = String.init(format: "Employee Salary: %d", empSalary)
+            employeeSalaryLabel.text = String.init(format: "Employee Salary: %d", empSalary)
         }
     }
 }
