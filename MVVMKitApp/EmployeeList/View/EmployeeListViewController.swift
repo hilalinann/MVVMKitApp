@@ -8,6 +8,83 @@
 import UIKit
 import Combine
 
+/*
+protocol EmployeeListViewControllerProtocol : AnyObject {
+    func reloadData()
+}
+*/
+
+final class EmployeeListViewController: BaseHostingViewController<EmployeeListContentView,EmployeeListViewModel> {
+    
+//    override init(contentView: EmployeeListContentView, viewModel: EmployeeListViewModel) {
+//            super.init(contentView: contentView, viewModel: viewModel)
+//    }
+//        
+//    @MainActor @preconcurrency required dynamic init?(coder aDecoder: NSCoder) {
+//        fatalError("Storyboard init desteklenmiyor. Programmatically başlat.")
+//    }
+
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        //callToViewModelForUpdate()
+//    }
+
+    /*
+    func callToViewModelForUpdate() {
+        self.viewModel
+            .employeeListResponse
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Veri çekme hatası: \(error.localizedDescription)")
+                }
+            }, receiveValue: { [weak self] response in
+                guard let self = self else { return }
+                self.viewModel.empData = response
+                self.updateDataSource()
+                
+            })
+            .store(in: &employeeListSubscriber)
+
+        self.employeeViewModel.getEmployeeList()
+    }
+
+    func updateDataSource() {
+        print("updateDataSource() fonksiyonu çağrıldı ")
+        
+        self.dataSource = EmployeeTableViewDataSource(cellIdentifier: "EmployeeTableViewCell", items: self.employeeViewModel.empData.data!, configureCell: { (cell,emd) in
+            cell.employeesIdLabel.text = String(emd.id)
+            cell.employessNameLabel.text = String(emd.employee_name)
+        })
+        
+        DispatchQueue.main.async {
+            self.tableView.dataSource = self.dataSource
+            self.tableView.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        employeeViewModel.navigateToEmployeeDetailScreen(index: indexPath.row)
+    }
+    */
+}
+
+/*
+extension EmployeeListViewController: EmployeeListViewControllerProtocol {
+    func reloadData() {
+       
+    }
+}
+*/
+
+
+
+
+
+/*
 class EmployeeListViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
@@ -109,7 +186,7 @@ class EmployeeListViewController: UIViewController, UITableViewDelegate {
         }
         
     }
-
+*/
 
 
 /*

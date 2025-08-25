@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum Route {
+    case employeeDetail(EmployeeData?)
+    case nextScreen
+}

@@ -9,39 +9,58 @@ import Foundation
 import UIKit
 
 
-class EmployeeListModule {
+final class EmployeeListRouter: BaseRouter {
     
-    func createModule() -> UIViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let empVC = storyboard.instantiateViewController(withIdentifier: "EmployeeViewController") as! EmployeeViewController
+    static func createModule() -> UIViewController {
+        let router = EmployeeListRouter()
+        let viewModel = EmployeeListViewModel(router: router)
+        let contentView = EmployeeListContentView(viewModel: viewModel)
+        let viewController = EmployeeListViewController(contentView: contentView, viewModel: viewModel)
         
-        let viewModel = EmployeeListViewModel()
-        viewModel.router = EmployeeListRouter()
-        viewModel.router?.viewController = empVC
-            
-        empVC.employeeViewModel = viewModel
-        //empVC.employeeViewModel.router = EmployeeListRouter()
-        //empVC.employeeViewModel.router?.viewController = empVC
-        return empVC
+        router.viewController = viewController
+        //viewModel.viewController = viewController
+        return viewController
     }
     
+    func routeToDetail(empData: EmployeeData?) {
+            navigate(to: .employeeDetail(empData))
+    }
 }
 
-class EmployeeListRouter {
-    var viewController: UIViewController?
+/*
+class EmployeeListRouter : BaseRouter {
+    //weak var viewController: EmployeeViewController?
+    
+    static func createModule() -> UIViewController {
+     
+        let router = EmployeeListRouter()
+        let viewModel = EmployeeListViewModel(router:router)
+        let viewController = EmployeeListViewController(viewModel: viewModel)
+        router.viewController = viewController
+        return viewController
+        
+    }
+    
+    func routeToDetail(empData: EmployeeData?) {
+            navigate(to: .employeeDetail(empData))
+        }
 }
+*/
 
-protocol EmployeeListRouterProtocol {
+/*
+protocol EmployeeListRouterProtocol : BaseRouterProtocol {
     func routeToDetail(empData: EmployeeData?)
 }
 
 extension EmployeeListRouter : EmployeeListRouterProtocol {
     
     func routeToDetail(empData: EmployeeData?) {
-        let empDetail = EmployeeDetailModule().createModule()
-        empDetail.employeeDetailViewModel.empData = empData
-        viewController?.navigationController?.pushViewController(empDetail, animated: true)
+        navigate(to: .employeeDetail(empData))
+        //let empDetail = EmployeeDetailRouter().createModule()
+        //empDetail.employeeDetailViewModel.empData = empData
+        //viewController?.navigationController?.pushViewController(empDetail, animated: true)
         
     }
 }
 
+*/

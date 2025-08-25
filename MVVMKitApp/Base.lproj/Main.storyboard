@@ -69,10 +69,10 @@
             </objects>
             <point key="canvasLocation" x="883.20610687022895" y="3.5211267605633805"/>
         </scene>
-        <!--Employee View Controller-->
+        <!--Employee List View Controller-->
         <scene sceneID="5f4-Xm-O0Y">
             <objects>
-                <viewController storyboardIdentifier="EmployeeViewController" id="vO9-LP-3pJ" customClass="EmployeeViewController" customModule="MVVMKitApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmployeeViewController" id="vO9-LP-3pJ" customClass="EmployeeListViewController" customModule="MVVMKitApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1g9-YU-Vkz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

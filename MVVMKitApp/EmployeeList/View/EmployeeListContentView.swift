@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct EmployeeListContentView: View {
+    
+    @ObservedObject var viewModel: EmployeeListViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if let employees = viewModel.empData?.data {
+                List(employees, id: \.id) { employee in
+                    VStack(alignment: .leading) {
+                        Text(employee.employee_name)
+                            .font(.headline)
+                        Text("ID: \(employee.id)")
+                            .font(.subheadline)
+                    }
+                    .onTapGesture {
+                        if let index = employees.firstIndex(where: { $0.id == employee.id }) {
+                            viewModel.navigateToEmployeeDetailScreen(index: index)
+                        }
+                    }
+                }
+            }
+        }
+        .onAppear {
+            viewModel.getEmployeeList()
+        }
     }
-}
-
-#Preview {
-    EmployeeListContentView()
 }

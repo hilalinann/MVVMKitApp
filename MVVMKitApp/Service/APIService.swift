@@ -22,30 +22,22 @@ enum DataLoadingError: Error, LocalizedError {
 }
 
 class APIService: NSObject {
-
     func fetchEmployeeMockData() -> AnyPublisher<Employees, DataLoadingError> {
         Future<Employees, DataLoadingError> { promise in
-
-            guard let pathString = Bundle(for: type(of: self)).path(forResource: "MyData", ofType: "json") else {
+            guard let url = Bundle.main.url(forResource: "MyData", withExtension: "json") else {
                 promise(.failure(.fileNotFound))
                 return
             }
-
             do {
-                let jsonString = try String(contentsOfFile: pathString, encoding: .utf8)
-
-                guard let jsonData = jsonString.data(using: .utf8) else {
-                    promise(.failure(.dataConversionFailed))
-                    return
-                }
-
+                let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
-                let employees = try decoder.decode(Employees.self, from: jsonData)
+                // decoder.keyDecodingStrategy = .convertFromSnakeCase // gerekiyorsa açın
+                let employees = try decoder.decode(Employees.self, from: data)
                 promise(.success(employees))
             } catch {
+                print("JSON decode error:", error) // Teşhis için
                 promise(.failure(.jsonDecodingFailed))
             }
-
         }
         .eraseToAnyPublisher()
     }
